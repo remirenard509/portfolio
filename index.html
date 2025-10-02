@@ -3,226 +3,372 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio de Rémi RENARD</title>
+  <title>Portfolio of Rémi RENARD</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     * {
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-    body {
-      margin: 0;
-      background-color: #f4f7fa;
-      color: #333;
-      padding: 2rem;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 1rem;
-    }
-    header img {
-      width: 100px;
-      border-radius: 50%;
-    }
-    h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    h2 {
-      font-size: 1.3rem;
-      color: #1a73e8;
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
-    }
-    ul {
-      padding-left: 1.2rem;
-    }
-    .skills, .project-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    .card {
-      background: #f9fbfd;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    .card img {
-      width: 100%;
-      max-height: 200px;
-      object-fit: contain;
-      border-radius: 6px;
-      margin-top: 0.5rem;
-    }
-    .btns a {
-      display: inline-block;
-      margin-right: 1rem;
-      margin-top: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: #1a73e8;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-    }
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #f4f7fa, #e8f0fe);
+  color: #333;
+  padding: 0;
+}
+
+/* Barre de navigation */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 1000;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0.8rem 2rem;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #1a73e8;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #1559b3;
+  border-bottom: 2px solid #1a73e8;
+  padding-bottom: 2px;
+}
+
+/* Pour éviter que le header soit caché sous la navbar */
+.container {
+  margin-top: 80px; /* espace sous la navbar */
+}
+
+/* Titres sans trait */
+h2 {
+  font-size: 1.6rem;
+  color: #1a73e8;
+  margin-top: 2rem;
+  padding-left: 0;   /* plus de décalage */
+  border-left: none; /* supprime le trait */
+}
+
+/* Container principal */
+.container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #eee;
+  padding-bottom: 1.5rem;
+}
+
+header h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1a73e8;
+}
+
+header p {
+  margin-top: 0.5rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Boutons */
+.btns a {
+  display: inline-block;
+  margin: 0.5rem 1rem 0 0;
+  padding: 0.6rem 1.2rem;
+  background: #1a73e8;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btns a:hover {
+  background: #1559b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(26,115,232,0.2);
+}
+
+/* Compétences */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.skills ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skills li {
+  margin: 0.5rem 0;
+  padding: 0.4rem 0.8rem;
+  background: #f9fbfd;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+
+/* Grille des projets */
+.project {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Cartes projet */
+.card {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+.card strong {
+  font-size: 1.2rem;
+  color: #222;
+}
+
+.card p {
+  color: #555;
+  font-size: 0.95rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.card img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: auto;
+  transition: 0.3s;
+}
+
+.card img:hover {
+  transform: scale(1.03);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin: 2rem 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
   </style>
 </head>
 <body>
   <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#alternance">Alternance</a></li>
+        <li><a href="#projects">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
     <header>
       <div>
-        <h1>Rémi RENARD</h1>
-        <p>L’enseignement m’a appris à transmettre. Le code me permet de construire. En reconversion à Coda, je transforme ma passion 
-          pour la logique en compétences techniques, avec une forte appétence pour la cybersécurité et la data. Prêt à relever de nouveaux défis dans un domaine en constante évolution.</p>
+        <h2>Rémi RENARD recherche une alternance<br>bachelor développeur full stack</h2>
+        <p>Ancien enseignant en mathématiques, aujourd’hui développeur en reconversion. Passionné 
+          par l’IA et le développement full stack, je recherche une alternance pour mettre mes compétences
+           en pratique sur des projets concrets et innovants.</p>
         <div class="btns">
-          <a href="https://www.linkedin.com/in/remi-renard-developpeur-full-stack/" target="_blank">Linkedin</a>
+          <a href="https://www.linkedin.com/in/remi-renard-developpeur-full-stack/" target="_blank">LinkedIn</a>
           <a href="https://github.com/remirenard509" target="_blank">GitHub</a>
-          <a href="https://gitlab.com/rem.renard36" target="_blank">GitLab</a>
-          <a href="assets/Remi RENARD Dev full stack.pdf" target="_blank">Mon CV</a>
+          <a href="assets/Rémi renard cv master IA-3.pdf" target="_blank">Mon CV</a>
+          <a href="assets/Guide de l’alternance pour l’Entreprise.pdf" target="_blank">Guide de l'alternance</a>
         </div>
       </div>
     </header>
 
-    <h2>Compétences techniques</h2>
+    <h2 id="competences">Compétences</h2>
     <div class="skills">
       <ul>
         <li>C, Python, PHP, JavaScript, Java</li>
-        <li>HTML, CSS, Node.js, API REST</li>
+        <li>HTML, CSS, Node.js, REST API</li>
         <li>MySQL, Bootstrap, Git, GitHub</li>
         <li>Linux, NGINX, Docker, JWT, HTTPS</li>
       </ul>
       <ul>
-        <li>Sécurisation API, gestion des permissions</li>
+        <li>API security, permission management</li>
         <li>WordPress, Figma, VSCode, Eclipse</li>
-        <li>Postman, Solid, Programmation orientée objet</li>
-        <li>Travail en équipe, autonomie, rigueur</li>
+        <li>Postman, Solid, Object-Oriented Programming</li>
+        <li>Teamwork, autonomy, rigor</li>
       </ul>
     </div>
 
-    <h2>Détails de l'alternance à Coda Orléans</h2>
-    <p>
-      Je suis à la recherche d’une alternance dans le domaine du développement informatique, quel que soit le secteur : front-end, back-end, cybersécurité, intelligence artificielle ou tout autre domaine connexe.<br>
-      Je suis disponible partout en France, avec une préférence pour la région parisienne, le Centre-Val de Loire ou un poste en télétravail. Je recherche un contrat d'une durée de deux ans, à partir de septembre 2025. Le rythme de l'alternance est de trois semaines en entreprise pour une semaine à l'école.<br>
-      Les frais de scolarité s'élèvent à 8 500 € par an. Dans le cadre d’un contrat d’apprentissage en Bachelor Développeur Fullstack, votre OPCO prend en charge 7178 euros des frais de scolarité, ce qui fait un reste à charge de 1322 euros par année de formation.<br>
-      D’autre part, l’Etat accorde aux entreprises recourant à l’apprentissage une aide de 6 000 € lorsque les apprentis sont en situation de handicap comme c’est mon cas, je bénéficie d’une RQTH, et cumulables avec les autres aides spécifiques.<br>
-      Au-delà de l'aide à l'embauche de 6000 euros pour un apprenti en situation de handicap, vous pouvez également bénéficier d'aides supplémentaires.<br>
-    </p>
+    <h2 id="alternance">Détails de l'alternance à Coda Orléans</h2>
 
-    <h2>Projets réalisés</h2>
+    <div class="skills">
+      <ul>
+        <li>Contrat D'alternance dans le domaine du développement logiciel avec une dimension cybersécurité ou intelligence artificielle ouvert à d'autre domaine tel que chef de projet</li>
+        <li>Rythme 3 semaines entreprises, 1 semaine école</li>
+        <li>Disponible partout en France, préférence pour la région Ile de France et Centre Val de Loire</li>
+      </ul>
+    </div>
+    
+    <h2 id="projects">Projects</h2>
     <div class="project">
 
       <div class="card">
-        <strong>Carte de visite</strong>
-        <p>Je propose des services de création de site vitrine et E-commerce, application mobile...</p>
+        <strong>Alyra</strong>
+        <p>Developer IA</p>
+        <a href="assets/alyra.png" target="_blank">
+          <img src="assets/alyra.png" alt="alyra">
+        </a>
+      </div>
+
+      <div class="card">
+        <strong>Business Card</strong>
+        <p>I offer services in creating showcase websites, e-commerce sites, and mobile applications...</p>
         <a href="assets/carteDeVisite.png" target="_blank">
-          <img src="assets/carteDeVisite.png" alt="carteDeVisite">
+          <img src="assets/carteDeVisite.png" alt="Business Card">
         </a>
       </div>
 
       <div class="card">
-        <strong>Recommandation</strong>
-        <p>Recommandation de la directrice adjointe de l'école Coda Orléans.</p>
+        <strong>Recommendation</strong>
+        <p>Recommendation from the Deputy Director of Coda Orléans school.</p>
         <a href="assets/Lettre Recommandation Rémi Renard.pdf" target="_blank">
-          <img src="assets/lettre de recommandation.png" alt="Lettre de Recommandation">
+          <img src="assets/lettre de recommandation.png" alt="Recommendation Letter">
         </a>
       </div>
 
-
-
       <div class="card">
-        <strong>Site vitrine</strong>
-        <p>Site vitrine pour l'entreprise les Crudettes à Chateau Neuf sur Loire.</p>
+        <strong>Showcase Website</strong>
+        <p>Showcase website for the company "Les Crudettes" in Châteauneuf-sur-Loire.</p>
         <a href="assets/lesCrudettes.png" target="_blank">
-          <img src="assets/lesCrudettes.png" alt="les Crudettes">
+          <img src="assets/lesCrudettes.png" alt="Les Crudettes">
         </a>
       </div>
 
       <div class="card">
-        <strong>prix du jury</strong>
-        <p>Obtenu par DWS Engraving avec le projet de dessin à la main pour de la gravure ci-dessous.</p>
+        <strong>Jury Prize</strong>
+        <p>Awarded to DWS Engraving with the hand-drawing project for engraving below.</p>
         <a href="#handwriting" target="_blank">
-          <img src="assets/jury.jpg" alt="hybridGame">
+          <img src="assets/jury.jpg" alt="Jury Prize">
         </a>
-      </div>
-
-      <div class="card">
-        <strong>Jeu de plateau hybrid</strong>
-        <p>On commence par calibrer le plateau de jeu puis on utilise des marqueurs arUco pour détecter la position des tokens.</p>
-        <a href="https://youtu.be/pQgUuDbgFNc" target="_blank">
-          <img src="assets/hybridGame.png" alt="hybridGame">
-        </a>
-      </div>
-
-      <div class="card">
-        <strong>Espace bien être</strong>
-        <p>Outils pour le sommeil, le sport, un journal de bord, la respiration, la méditation, la gestion d'habitudes</p>
-        <a href="https://remirenard509.github.io/bienEtre" target="_blank">
-          <img src="assets/bienEtre.png" alt="bien être">
-        </a>
-      </div>
-
-      <div class="card">
-        <strong>poker (outil d'analyse de poker)</strong>
-        <p>Calcul de probabilités via une simulation de Monte Carlo</p>
-        <a href="https://remirenard509.github.io/poker" target="_blank">
-          <img src="assets/poker.png" alt="poker">
-        </a>
-      </div>
-
-      <div class="card">
-        <strong>Draw Date (Application de rencontre)</strong>
-        <p>Matching via devinettes de dessins, chat interactif, abonnement SuperMatch.</p>
-        <a></a><img src="assets/drawdate.png" alt="Draw Date">
       </div>
 
       <div class="card" id="handwriting">
-        <strong>Application de gravure (DWS)</strong>
-        <p>Dessin sur tablette pour gravure de luxe avec conversion SVG.</p>
+        <strong>Engraving Application (DWS)</strong>
+        <p>Tablet drawing for luxury engraving with SVG conversion.</p>
         <a href="https://remirenard509.github.io/Handwriting/home.html" target="_blank">
-          <img src="assets/handwritting.png" alt="Gravure">
+          <img src="assets/handwritting.png" alt="Engraving App">
         </a>
-        
       </div>
 
       <div class="card">
-        <strong>Jeu Java style Pokemon</strong>
-        <p>Projet en POO avec classes abstraites, combat tour par tour, ArrayList.</p>
+        <strong>Hybrid Board Game</strong>
+        <p>We start by calibrating the game board, then use ArUco markers to detect token positions.</p>
+        <a href="https://youtu.be/pQgUuDbgFNc" target="_blank">
+          <img src="assets/hybridGame.png" alt="Hybrid Board Game">
+        </a>
+      </div>
+
+      <div class="card">
+        <strong>Wellness App</strong>
+        <p>Tools for sleep, sports, journaling, breathing, meditation, and habit tracking.</p>
+        <a href="https://remirenard509.github.io/bienEtre" target="_blank">
+          <img src="assets/bienEtre.png" alt="Wellness App">
+        </a>
+      </div>
+
+      <div class="card">
+        <strong>Poker (Poker Analysis Tool)</strong>
+        <p>Probability calculation using Monte Carlo simulation.</p>
+        <a href="https://remirenard509.github.io/poker" target="_blank">
+          <img src="assets/poker.png" alt="Poker Tool">
+        </a>
+      </div>
+
+      <div class="card">
+        <strong>Draw Date (Dating App)</strong>
+        <p>Matching through drawing riddles, interactive chat, and SuperMatch subscription.</p>
+        <img src="assets/drawdate.png" alt="Draw Date">
+      </div>
+
+
+
+      <div class="card">
+        <strong>Java Game (Pokémon style)</strong>
+        <p>OOP project with abstract classes, turn-based combat, and ArrayList management.</p>
         <img src="assets/pokemon.png" alt="Pokemon Java">
       </div>
 
       <div class="card">
-        <strong>App de gestion magasin (PHP / MySQL)</strong>
-        <p>Gestion CRUD des produits, utilisateurs et commandes. Auth par token.</p>
-        <img src="assets/php.png" alt="Gestion PHP">
+        <strong>Store Management App (PHP / MySQL)</strong>
+        <p>CRUD management of products, users, and orders. Authentication with tokens.</p>
+        <img src="assets/php.png" alt="Store Management">
       </div>
 
       <div class="card">
         <strong>Glitch Hunters (Game Jam)</strong>
-        <p>Jeu arcade créé avec Phaser JS : un chat magicien affronte des fantômes !</p>
+        <p>Arcade game made with Phaser JS: a wizard cat fighting ghosts!</p>
         <a href="https://dylserker.itch.io/glitch-hunters" target="_blank">
-        <img src="assets/nekomancy.png" alt="Glitch Hunters">
+          <img src="assets/nekomancy.png" alt="Glitch Hunters">
         </a>
       </div>
 
       <div class="card">
-        <strong>Pathfinding en C</strong>
-        <p>Algorithme du plus court chemin avec graphes, pointeurs et gestion mémoire.</p>
+        <strong>Pathfinding in C</strong>
+        <p>Shortest path algorithm using graphs, pointers, and memory management.</p>
         <img src="assets/pathfinding.png" alt="Pathfinding">
       </div>
     </div>
   </div>
+  <footer id="contact">
+  <p>📧 Email : rem.renard36@gmail.com</p>
+  <p>© 2025 Rémi Renard - Portfolio</p>
+  </footer>
+
 </body>
 </html>
