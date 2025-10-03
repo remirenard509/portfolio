@@ -53,6 +53,64 @@ nav a:hover {
   border-bottom: 2px solid #1a73e8;
   padding-bottom: 2px;
 }
+/* --- Animation de la navbar au scroll --- */
+nav {
+  transition: background 0.4s, box-shadow 0.4s;
+}
+nav.scrolled {
+  background: #1a73e8;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+nav.scrolled a {
+  color: white;
+}
+nav.scrolled a:hover {
+  border-bottom: 2px solid white;
+}
+
+/* --- Animation des titres --- */
+h2 {
+  position: relative;
+  display: inline-block;
+  animation: slideIn 1s ease;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* --- Effet apparition progressive des compétences --- */
+.skills li {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeUp 0.6s ease forwards;
+}
+.skills li:nth-child(1) { animation-delay: 0.1s; }
+.skills li:nth-child(2) { animation-delay: 0.2s; }
+.skills li:nth-child(3) { animation-delay: 0.3s; }
+.skills li:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Pulsation du bouton "Voir plus" --- */
+#toggleBtn {
+  animation: pulse 1.8s infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+/* --- Animation sur hover des cartes projets --- */
+.card {
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+.card:hover {
+  transform: translateY(-8px) rotateZ(-1deg);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
 
 /* Pour éviter que le header soit caché sous la navbar */
 .container {
@@ -386,6 +444,16 @@ footer {
       moreProjects.style.display = "none";
       toggleBtn.textContent = "Voir plus";
       window.scrollTo({ top: document.getElementById("projects").offsetTop - 80, behavior: "smooth" });
+    }
+  });
+  
+
+  window.addEventListener("scroll", () => {
+    const nav = document.querySelector("nav");
+    if (window.scrollY > 50) {
+      nav.classList.add("scrolled");
+    } else {
+      nav.classList.remove("scrolled");
     }
   });
 </script>
